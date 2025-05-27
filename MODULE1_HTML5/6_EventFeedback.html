@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Feedback</title>
+  <script>
+    function validatePhone(el) {
+      if (!/^\d{10}$/.test(el.value)) {
+        alert("Enter a valid 10-digit phone number.");
+      }
+    }
+
+    function showFee(el) {
+      const fees = { Music: "$10", Art: "$5", Food: "$15" };
+      document.getElementById("feeDisplay").innerText = "Fee: " + (fees[el.value] || "$0");
+    }
+
+    function confirmSubmit() {
+      alert("Feedback submitted successfully!");
+    }
+
+    function enlargeImage(el) {
+      el.style.width = "300px";
+    }
+
+    function countChars(el) {
+      document.getElementById("charCount").innerText = "Characters: " + el.value.length;
+    }
+  </script>
+</head>
+<body>
+
+  <form onsubmit="confirmSubmit(); return false;">
+    <label>Phone:</label>
+    <input type="text" onblur="validatePhone(this)" placeholder="10-digit number"><br><br>
+
+    <label>Choose Event:</label>
+    <select onchange="showFee(this)">
+      <option value="">Select</option>
+      <option value="Music">Music</option>
+      <option value="Art">Art</option>
+      <option value="Food">Food</option>
+    </select>
+    <div id="feeDisplay"></div><br>
+
+    <label>Feedback:</label><br>
+    <textarea onkeyup="countChars(this)"></textarea>
+    <p id="charCount">Characters: 0</p><br>
+
+    <button type="submit">Submit Feedback</button>
+  </form>
+
+  <br>
+  <img src="event.jpg" width="150" ondblclick="enlargeImage(this)" alt="Event Image">
+
+</body>
+</html>
